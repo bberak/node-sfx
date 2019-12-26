@@ -1,6 +1,6 @@
 {
   "name": "node-sfx",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A library for composing and synthesizing sound for NodeJS programs",
   "main": "./index.js",
   "scripts": {
