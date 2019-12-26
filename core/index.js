@@ -84,6 +84,7 @@ module.exports = {
 	loop,
 	repeat: loop,
 	passThrough,
+	pass: passThrough,
 	echo,
 	noop: _.noop,
 	noOp: _.noop,
