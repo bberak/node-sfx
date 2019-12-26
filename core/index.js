@@ -42,7 +42,7 @@ const average = (...values) => {
 
 const filter = predicate => (...args) => toFlatArray(args).filter(predicate);
 
-const loop = (sheet, bpm = 192, effect = base => base) => {
+const loop = (sheet, bpm = 192, effect = (time, base) => base) => {
 	let index = 0;
 
 	setInterval(() => {
