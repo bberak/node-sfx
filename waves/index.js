@@ -12,6 +12,8 @@ const sawtooth = (frequency, inverse) => time =>
 const square = (frequency, ratio) => time =>
 	periodic.square(time * frequency, ratio);
 
+const pulse = (frequency, tlr) => time => periodic.pulse(time * frequency, tlr);
+
 const triangle = (frequency, ratio) => time =>
 	periodic.triangle(time * frequency, ratio);
 
@@ -44,6 +46,7 @@ module.exports = {
 	sawtooth,
 	saw: sawtooth,
 	square,
+	pulse,
 	triangle,
 	clausen,
 	noise: noise,

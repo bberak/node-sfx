@@ -1,5 +1,5 @@
 const { synthesizer, compose, split, map, limit, reduce, scale } = require("../core");
-const { sine, triangle, sawtooth, square, clausen, noise, perlin, a, b, c, d, e, f, g } = require("../waves");
+const { sine, triangle, saw, square, pulse, clausen, noise, perlin, a, b, c, d, e, f, g } = require("../waves");
 const { lowPass, highPass, envelope } = require("../filters");
 const { listenForExit, keypress, log } = require("../utils");
 
@@ -35,12 +35,15 @@ const notes = {
 };
 
 let effects = [
+	(base, time, mix) => base + (saw(2)(time) + pulse(0.1)(time)) * mix,
+	(base, time, mix) => base + (saw(2)(time) + pulse(0.2)(time) + square(1)(time)) * mix,
+	(base, time, mix) => base + (saw(2)(time) + pulse(0.2)(time) + square(5)(time)) * mix,
 	(base, time, mix) => base + compose(triangle(4), lowPass("lp1")(220))(time) * mix,
 	(base, time, mix) => base * sine(2)(time) * 4 * mix,
 	(base, time, mix) => base + compose(sine(8), lowPass("lp2")(120))(time) * mix,
 	(base, time, mix) => base + compose(sine(2), lowPass("lp2")(120))(time) * mix,
 	(base, time, mix) => base + perlin(1)(time) * mix,
-	(base, time, mix) => base * mix,
+	(base, time, mix) => base * mix
 ];
 
 let note = notes["z"];
@@ -63,7 +66,7 @@ synthesizer(time =>
 	compose(
 		note,
 		base => effect(base, time, mix),
-		envelope("e")(2, 2)
+		envelope("e")(10, 2)
 	)(time)
 ).play();
 
