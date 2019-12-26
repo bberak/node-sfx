@@ -42,18 +42,18 @@ const average = (...values) => {
 
 const filter = predicate => (...args) => toFlatArray(args).filter(predicate);
 
-const loop = (sheet, bpm = 192, effect = (time, base) => base) => {
-	let index = 0;
+const loop = (sheet, bpm = 192) => {
+	const multiTrack = _.isArray(sheet[0]);
+	const length = multiTrack ? _.maxBy(sheet, s => s.length).length : sheet.length;
+	const beat = 60 / bpm;
 
-	setInterval(() => {
-		index++;
-	}, 60000 / bpm);
+	return time => {
+		const index = Math.trunc(time / beat) % length;
 
-	return time =>
-		compose(
-			sheet[index % sheet.length],
-			base => effect(time, base)
-		)(time);
+		return multiTrack
+			? sheet.map(s => s[index] || echo(0)).map(x => x(time))
+			: sheet[index](time);
+	};
 };
 
 const passThrough = x => x;
@@ -76,6 +76,8 @@ module.exports = {
 	reduce,
 	sum,
 	multiply,
+	cross: multiply,
+	dot: multiply,
 	average,
 	avg: average,
 	filter,

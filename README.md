@@ -23,23 +23,22 @@ npm install --save node-sfx
 Import the package and create a synthesis graph:
 
 ```javascript
-const { synthesizer, loop, compose, map, passThrough, sum } = require("node-sfx/core");
-const { a, b, c, d, e, f, g, triangle, } = require("node-sfx/waves");
-const { lowPass, envelope } = require("node-sfx/filters");
+const { synthesizer, loop, compose, map, scale } = require("node-sfx/core");
+const { a, b, c, d, e, f, g } = require("node-sfx/waves");
+const { lowPass } = require("node-sfx/filters");
 const { listenForExit } = require("node-sfx/utils");
 
 synthesizer(
-	loop(
-		[c(3), e(3), g(3), b(3), c(4), b(3), g(3), e(3)],
-		275,
-		compose(
-			map(
-				compose(triangle(4), lowPass("lp")(120)),
-				passThrough
-			),
-			sum,
-			envelope("e")(10, 2)
-		)
+	compose(
+		loop(
+			[
+				[c(4), e(4), g(4), b(4), c(5), b(4), g(4), e(4)],
+				[c(2), e(2), g(2), b(2), c(3), b(2), g(2), e(2)]
+			],
+			275
+		),
+		map(scale(0.5), scale(1)),
+		map(lowPass("l")(440), lowPass("r")(440))
 	)
 ).play();
 

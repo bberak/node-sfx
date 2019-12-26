@@ -1,20 +1,19 @@
-const { synthesizer, loop, compose, map, passThrough, sum } = require("../core");
-const { a, b, c, d, e, f, g, triangle, } = require("../waves");
-const { lowPass, envelope } = require("../filters");
+const { synthesizer, loop, compose, map, scale } = require("../core");
+const { a, b, c, d, e, f, g } = require("../waves");
+const { lowPass } = require("../filters");
 const { listenForExit } = require("../utils");
 
 synthesizer(
-	loop(
-		[c(3), e(3), g(3), b(3), c(4), b(3), g(3), e(3)],
-		275,
-		compose(
-			map(
-				compose(triangle(4), lowPass("lp")(120)),
-				passThrough
-			),
-			sum,
-			envelope("e")(10, 2)
-		)
+	compose(
+		loop(
+			[
+				[c(4), e(4), g(4), b(4), c(5), b(4), g(4), e(4)],
+				[c(2), e(2), g(2), b(2), c(3), b(2), g(2), e(2)]
+			],
+			275
+		),
+		map(scale(0.5), scale(1)),
+		map(lowPass("l")(440), lowPass("r")(440))
 	)
 ).play();
 
