@@ -29,6 +29,11 @@ const { lowPass, highPass, envelope } = require("node-sfx/filters");
 const { listenForExit, keypress, log } = require("node-sfx/utils");
 ```
 
+## Roadmap
+
+- Adding the ability to record and save a tune to a `.wav` file
+- Adding the ability to playback a recorded tune - either from a `.wav` file or another format
+
 ## Built with amazing tools 💕
 
 - [audio-generator](https://github.com/audiojs/audio-generator)
