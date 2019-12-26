@@ -10,7 +10,7 @@ A library for composing and synthesizing sound for **NodeJS** programs
 
 - NodeJS `v8.9.4`
 - NPM `v6.9.0`
-- Linux users must install ALSA header files: `sudo apt-get install libasound2-dev`
+- Linux users must install [ALSA](https://alsa-project.org/wiki/Main_Page) header files: `sudo apt-get install libasound2-dev`
 
 ## Getting Started
 
