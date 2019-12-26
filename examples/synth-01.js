@@ -35,15 +35,15 @@ const notes = {
 };
 
 let effects = [
-	(base, time, mix) => base + (saw(2)(time) + pulse(0.1)(time)) * mix,
-	(base, time, mix) => base + (saw(2)(time) + pulse(0.2)(time) + square(1)(time)) * mix,
-	(base, time, mix) => base + (saw(2)(time) + pulse(0.2)(time) + square(5)(time)) * mix,
-	(base, time, mix) => base + compose(triangle(4), lowPass("lp1")(220))(time) * mix,
-	(base, time, mix) => base * sine(2)(time) * 4 * mix,
-	(base, time, mix) => base + compose(sine(8), lowPass("lp2")(120))(time) * mix,
-	(base, time, mix) => base + compose(sine(2), lowPass("lp2")(120))(time) * mix,
-	(base, time, mix) => base + perlin(1)(time) * mix,
-	(base, time, mix) => base * mix
+	(time, base, mix) => base + (saw(2)(time) + pulse(0.1)(time)) * mix,
+	(time, base, mix) => base + (saw(2)(time) + pulse(0.2)(time) + square(1)(time)) * mix,
+	(time, base, mix) => base + (saw(2)(time) + pulse(0.2)(time) + square(5)(time)) * mix,
+	(time, base, mix) => base + compose(triangle(4), lowPass("lp1")(220))(time) * mix,
+	(time, base, mix) => base * sine(2)(time) * 4 * mix,
+	(time, base, mix) => base + compose(sine(8), lowPass("lp2")(120))(time) * mix,
+	(time, base, mix) => base + compose(sine(2), lowPass("lp2")(120))(time) * mix,
+	(time, base, mix) => base + perlin(1)(time) * mix,
+	(time, base, mix) => base * mix
 ];
 
 let note = notes["z"];
@@ -65,7 +65,7 @@ keypress(key => {
 synthesizer(time =>
 	compose(
 		note,
-		base => effect(base, time, mix),
+		base => effect(time, base, mix),
 		envelope("e")(10, 2)
 	)(time)
 ).play();

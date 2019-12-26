@@ -20,8 +20,6 @@ const triangle = (frequency, ratio) => time =>
 const clausen = (frequency, limit) => time =>
 	periodic.clausen(time * frequency, limit);
 
-const noise = periodic.noise;
-
 const perlin = (scale = 1) => time => _perlin.perlin2(time * scale, 1);
 
 const note = pitch => (octave = 4) => sine(27.5 * Math.pow(2, octave + pitch));
@@ -49,8 +47,8 @@ module.exports = {
 	pulse,
 	triangle,
 	clausen,
-	noise: noise,
-	static: noise,
+	noise: periodic.noise,
+	static: periodic.noise,
 	perlin,
 	note,
 	a,

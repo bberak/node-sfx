@@ -17,14 +17,6 @@ const split = n => value => _.range(0, n).map(() => value);
 
 const scale = n => value => n * value;
 
-const sum = (...values) => _.sum(toFlatArray(values));
-
-const average = (...values) => {
-	const arr = toFlatArray(values);
-
-	return _.sum(arr) / arr.length;
-};
-
 const limit = (min, max) => value =>
 	value > max ? max : value < min ? min : value;
 
@@ -35,10 +27,38 @@ const map = (...funcs) => (...args) => {
 	return arrFunctions.map((f, i) => evaluate(f, arrArgs[i]));
 };
 
-const reduce = (func, initial = 1) => (...args) =>
+const reduce = (func, initial = 0) => (...args) =>
 	toFlatArray(args).reduce(func, initial);
 
+const sum = reduce((x, y) => x + y);
+
+const multiply = reduce((x, y) => x * y);
+
+const average = (...values) => {
+	const arr = toFlatArray(values);
+
+	return _.sum(arr) / arr.length;
+};
+
 const filter = predicate => (...args) => toFlatArray(args).filter(predicate);
+
+const loop = (sheet, bpm = 192, effect = base => base) => {
+	let index = 0;
+
+	setInterval(() => {
+		index++;
+	}, 60000 / bpm);
+
+	return time =>
+		compose(
+			sheet[index % sheet.length],
+			base => effect(time, base)
+		)(time);
+};
+
+const passThrough = x => x;
+
+const echo = val => () => val;
 
 module.exports = {
 	synthesizer,
@@ -48,13 +68,22 @@ module.exports = {
 	log,
 	split,
 	scale,
-	sum,
-	average,
 	limit,
 	constrain: limit,
 	map,
 	mapEach: map,
 	apply: map,
 	reduce,
-	filter
+	sum,
+	multiply,
+	average,
+	avg: average,
+	filter,
+	loop,
+	repeat: loop,
+	passThrough,
+	echo,
+	noop: _.noop,
+	noOp: _.noop,
+	nop: _.noop
 };
