@@ -13,13 +13,6 @@ const synthesizer = graph => {
 
 const compose = (...funcs) => _.flow(toFlatArray(funcs).map(toFunction));
 
-const log = label => value => {
-	if (label) console.log(label, value);
-	else console.log(value);
-
-	return value;
-};
-
 const split = n => value => _.range(0, n).map(() => value);
 
 const scale = n => value => n * value;
