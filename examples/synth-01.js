@@ -1,6 +1,6 @@
 const { synthesizer, compose, split, map, limit, reduce, scale } = require("../core");
 const { sine, triangle, saw, square, pulse, clausen, noise, perlin, a, b, c, d, e, f, g } = require("../waves");
-const { lowPass, highPass, envelope } = require("../filters");
+const { lowPass } = require("../filters");
 const { listenForExit, keypress, log } = require("../utils");
 
 const notes = {
@@ -66,7 +66,7 @@ synthesizer(time =>
 	compose(
 		note,
 		base => effect(time, base, mix),
-		envelope("e")(10, 2)
+		lowPass("out")(640)
 	)(time)
 ).play();
 
