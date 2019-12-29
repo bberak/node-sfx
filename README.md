@@ -4,7 +4,7 @@
 
 # Node SFX &middot; [![npm version](https://badge.fury.io/js/node-sfx.svg)](https://badge.fury.io/js/node-sfx) [![mit license](https://img.shields.io/badge/license-MIT-50CB22.svg)](https://opensource.org/licenses/MIT)
 
-A library for composing and synthesizing sound for **NodeJS** programs
+A library for composing and synthesizing sound for **NodeJS** programs using a variety of waves (oscillators), filters and other higher order functions.
 
 ## Requirements
 
