@@ -34,6 +34,8 @@ const exit = () => {
 	console.log("Press control + c to exit");
 };
 
+exit();
+
 module.exports = {
 	two_pi,
 	remap,

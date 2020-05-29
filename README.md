@@ -26,7 +26,6 @@ Import the package and create a synthesis graph:
 const { synthesizer, loop, compose, map, scale } = require("node-sfx/core");
 const { a, b, c, d, e, f, g } = require("node-sfx/waves");
 const { lowPass } = require("node-sfx/filters");
-const { listenForExit } = require("node-sfx/utils");
 
 synthesizer(
 	compose(
@@ -41,8 +40,6 @@ synthesizer(
 		map(lowPass("l")(440), lowPass("r")(440))
 	)
 ).play();
-
-listenForExit();
 ```
 
 ## Roadmap

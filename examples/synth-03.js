@@ -1,7 +1,6 @@
 const { synthesizer, loop, compose, map, scale } = require("../core");
 const { a, b, c, d, e, f, g } = require("../waves");
 const { lowPass } = require("../filters");
-const { listenForExit } = require("../utils");
 
 synthesizer(
 	compose(
@@ -15,5 +14,3 @@ synthesizer(
 		map(lowPass("l")(440), lowPass("r")(440))
 	)
 ).play();
-
-listenForExit();

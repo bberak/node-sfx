@@ -1,7 +1,7 @@
 const { synthesizer, compose, split, map, limit, reduce, scale } = require("../core");
 const { sine, triangle, saw, square, pulse, clausen, noise, perlin, a, b, c, d, e, f, g } = require("../waves");
 const { lowPass } = require("../filters");
-const { listenForExit, keypress, log } = require("../utils");
+const { keypress, log } = require("../utils");
 
 const notes = {
 	"z": a(2),
@@ -69,5 +69,3 @@ synthesizer(time =>
 		lowPass("out")(640)
 	)(time)
 ).play();
-
-listenForExit();
