@@ -20,7 +20,10 @@ const log = label => value => {
 };
 
 readline.emitKeypressEvents(process.stdin);
-process.stdin.setRawMode(true);
+
+if (process.stdin.isTTY) {
+    process.stdin.setRawMode(true);
+}
 
 const keypress = cb => {
 	process.stdin.on("keypress", (str, key) => cb(key, str));
