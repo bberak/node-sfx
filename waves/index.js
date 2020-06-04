@@ -22,7 +22,7 @@ const clausen = (frequency, limit) => time =>
 
 const perlin = (scale = 1) => time => _perlin.perlin2(time * scale, 1);
 
-const note = pitch => (octave = 4) => sine(27.5 * Math.pow(2, octave + pitch));
+const note = n => (octave = 4, wave = sine) => wave(27.5 * Math.pow(2, octave + n));
 
 const a = note(0 / 12);
 
