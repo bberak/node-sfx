@@ -9,10 +9,9 @@ const sine = (frequency, phase) => time =>
 const sawtooth = (frequency, inverse) => time =>
 	periodic.sawtooth(time * frequency, inverse);
 
-const square = (frequency, ratio) => time =>
-	periodic.square(time * frequency, ratio);
+const pulse = (frequency, ratio) => time => periodic.square(time * frequency, ratio);
 
-const pulse = (frequency, tlr) => time => periodic.pulse(time * frequency, tlr);
+const square = (frequency) => time => periodic.square(time * frequency, 0.5);
 
 const triangle = (frequency, ratio) => time =>
 	periodic.triangle(time * frequency, ratio);

@@ -42,6 +42,7 @@ exit();
 module.exports = {
 	two_pi,
 	remap,
+	interpolate: remap,
 	toFunction,
 	toFlatArray,
 	evaluate,
